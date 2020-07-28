@@ -1,27 +1,31 @@
-
 import 'package:flutter/material.dart';
 
-void main(){
+void main() {
   //aqui excuta-se o sistema atráves do RUNAPP
-  runApp(new HelloWordScreen());
+  runApp(new ListaTarefasApp());
 }
+
 //StatelessWidget os eventos não sao tratados como telas estaticas
-class HelloWordScreen extends StatelessWidget{
+class ListaTarefasApp extends StatelessWidget {
+  @override
+  //return widgets
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      home: new ListaScreen()
+    );
+  }
+}
 
-
+//METODO HOME DO APP
+class ListaScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-       
-    return MaterialApp(
-       home:Scaffold(
-         appBar:AppBar(
-           title: Text("Cabeçalho do App "),
-         ),
-         body: Center(
-           child: Text("Conteudo do Body,  ")
-           ),
-         )
-       );
+    return new Scaffold(
+      //topo
+      appBar: new AppBar(
+        title: new Text("Lista de tarefas"),
+      ),
+      body: Column(),
+    );
   }
-  
 }
