@@ -1,6 +1,9 @@
 # curso-google-flutter
  Flutter: crie apps Android/iOS com novo SDK mobile do Google 
 
+# criar um novo projeto 
+
+# flutter create nomedoprojeto
 
 # Para excutar o projeto 
 ir na pasta do flutter na raiz do seu disco rigido 

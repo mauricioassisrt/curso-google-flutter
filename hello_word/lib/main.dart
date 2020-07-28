@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 void main(){
+  //aqui excuta-se o sistema atráves do RUNAPP
   runApp(new HelloWordScreen());
 }
 //StatelessWidget os eventos não sao tratados como telas estaticas
