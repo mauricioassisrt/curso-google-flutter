@@ -1,4 +1,4 @@
-# curso-google-flutter
+# Curso Google Flutter
  Flutter: crie apps Android/iOS com novo SDK mobile do Google 
 
 # criar um novo projeto 
