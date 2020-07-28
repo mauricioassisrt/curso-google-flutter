@@ -10,9 +10,7 @@ class ListaTarefasApp extends StatelessWidget {
   @override
   //return widgets
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new ListaScreen()
-    );
+    return new MaterialApp(home: new ListaScreen());
   }
 }
 
@@ -25,7 +23,32 @@ class ListaScreen extends StatelessWidget {
       appBar: new AppBar(
         title: new Text("Lista de tarefas"),
       ),
-      body: Column(),
+      body: Column(
+        children: <Widget>[
+          new Row(
+            children: <Widget>[
+              IconButton(
+                icon: new Icon(
+                  Icons.check_box,
+                  color: Colors.green,
+                ),
+                iconSize: 50.0,
+                onPressed: () {},
+              ),
+              new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[Text("Lavar o carro bem lavado "), Text("13-02-2021")],
+              ),
+              
+            ],
+          ),
+          new Row(
+            children: <Widget>[Text("NOVA LINHA")],
+          )
+          
+        ],
+      ),
     );
   }
 }
+//children e utilizado para uma nova widget
