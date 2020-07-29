@@ -16,6 +16,28 @@ class ListaTarefasApp extends StatelessWidget {
 
 //METODO HOME DO APP
 class ListaScreen extends StatelessWidget {
+  Widget getItem() {
+    return new Row(
+      children: <Widget>[
+        IconButton(
+          icon: new Icon(
+            Icons.check_box,
+            color: Colors.green,
+          ),
+          iconSize: 50.0,
+          onPressed: () {},
+        ),
+        new Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text("Lavar o carro bem lavado "),
+            Text("13-02-2021")
+          ],
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -24,28 +46,16 @@ class ListaScreen extends StatelessWidget {
         title: new Text("Lista de tarefas"),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          new Row(
-            children: <Widget>[
-              IconButton(
-                icon: new Icon(
-                  Icons.check_box,
-                  color: Colors.green,
-                ),
-                iconSize: 50.0,
-                onPressed: () {},
-              ),
-              new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[Text("Lavar o carro bem lavado "), Text("13-02-2021")],
-              ),
-              
-            ],
+          Expanded(
+            child: ListView(
+              children: <Widget>[
+                getItem(),
+              ],
+            ),
           ),
-          new Row(
-            children: <Widget>[Text("NOVA LINHA")],
-          )
-          
         ],
       ),
     );
