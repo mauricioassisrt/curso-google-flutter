@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hello_word/tarefa.dart';
 
+//classe de exculsão do projeto
 void main() {
-  //aqui excuta-se o sistema atráves do RUNAPP
+  //aqui excuta-se o sistema atráves do RUNAPP e chama o metodo da tela desejada
   runApp(new ListaTarefasApp());
 }
 
@@ -10,13 +12,32 @@ class ListaTarefasApp extends StatelessWidget {
   @override
   //return widgets
   Widget build(BuildContext context) {
-    return new MaterialApp(home: new ListaScreen());
+    return new MaterialApp(title: 'Todo list App', home: new ListaScreen());
+  }
+}
+//list necessario para a list view atualizar campos etc
+class ListaScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new ListaScreenState();
   }
 }
 
-//METODO HOME DO APP
-class ListaScreen extends StatelessWidget {
-  Widget getItem() {
+//METODO HOME DO APP extends state é
+class ListaScreenState extends State<ListaScreen> {
+  //lista de tarefas do tipo array list
+  List<Tarefa> tarefas = new List<Tarefa>();
+  TextEditingController controller = new TextEditingController();
+  //metodo no qual adiciona uma tarefa
+  void adicionaTarefa(String nome) {
+    setState(() {
+      tarefas.add(Tarefa(nome));
+    });
+    //instanciado no textfild ao excutar aqui ele limpará os campos
+    controller.clear();
+  }
+//metodo  responsavel por exibir o item inserido na lista
+  Widget getItem(Tarefa tarefa) {
     return new Row(
       children: <Widget>[
         IconButton(
@@ -30,8 +51,8 @@ class ListaScreen extends StatelessWidget {
         new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text("Lavar o carro bem lavado "),
-            Text("13-02-2021")
+            Text(tarefa.nome),
+            Text(tarefa.data.toIso8601String())
           ],
         ),
       ],
@@ -49,11 +70,23 @@ class ListaScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+          //container do text fild 
+          Container(
+            padding: EdgeInsets.all(8.0),
+            child: TextField(
+                //controller instanciando ele passa a controlar este textfild
+                controller: controller,
+                onSubmitted: adicionaTarefa),
+          ),
+          //container da listview 
           Expanded(
-            child: ListView(
-              children: <Widget>[
-                getItem(),
-              ],
+            child: ListView.builder(
+              //obtem o tamanho da lista 
+              itemCount: tarefas.length,
+              //percoro o indice e atraves do numero do indice retorno a tarefa 
+              itemBuilder: (_, indice) {
+                return getItem(tarefas[indice]);
+              },
             ),
           ),
         ],
@@ -61,4 +94,5 @@ class ListaScreen extends StatelessWidget {
     );
   }
 }
+
 //children e utilizado para uma nova widget
