@@ -15,6 +15,7 @@ class ListaTarefasApp extends StatelessWidget {
     return new MaterialApp(title: 'Todo list App', home: new ListaScreen());
   }
 }
+
 //list necessario para a list view atualizar campos etc
 class ListaScreen extends StatefulWidget {
   @override
@@ -36,17 +37,22 @@ class ListaScreenState extends State<ListaScreen> {
     //instanciado no textfild ao excutar aqui ele limpará os campos
     controller.clear();
   }
+
 //metodo  responsavel por exibir o item inserido na lista
   Widget getItem(Tarefa tarefa) {
     return new Row(
       children: <Widget>[
         IconButton(
-          icon: new Icon(
-            Icons.check_box,
+          icon: new Icon(tarefa.concluida ? Icons.check_box :
+            Icons.check_box_outline_blank,
             color: Colors.green,
           ),
           iconSize: 50.0,
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              tarefa.concluida= true;
+            });
+          },
         ),
         new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +76,7 @@ class ListaScreenState extends State<ListaScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          //container do text fild 
+          //container do text fild
           Container(
             padding: EdgeInsets.all(8.0),
             child: TextField(
@@ -78,12 +84,12 @@ class ListaScreenState extends State<ListaScreen> {
                 controller: controller,
                 onSubmitted: adicionaTarefa),
           ),
-          //container da listview 
+          //container da listview
           Expanded(
             child: ListView.builder(
-              //obtem o tamanho da lista 
+              //obtem o tamanho da lista
               itemCount: tarefas.length,
-              //percoro o indice e atraves do numero do indice retorno a tarefa 
+              //percoro o indice e atraves do numero do indice retorno a tarefa
               itemBuilder: (_, indice) {
                 return getItem(tarefas[indice]);
               },
